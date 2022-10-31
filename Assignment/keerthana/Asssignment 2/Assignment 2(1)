@@ -1,35 +1,146 @@
-import java.sql.*;
- 
-public class insert1
 {
-    public static void main(String args[])
-    {
-        String id = "id1";
-        String pwd = "pwd1";
-        String fullname = "geeks for geeks";
-        String email = "geeks@geeks.org";
-         
-        try
-        {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection con = DriverManager.getConnection("
-             jdbc:oracle:thin:@localhost:1521:orcl", "login1", "pwd1");
-            Statement stmt = con.createStatement();
-             
-            // Inserting data in database
-            String q1 = "insert into userid values('" +id+ "', '" +pwd+ 
-                                  "', '" +fullname+ "', '" +email+ "')";
-            int x = stmt.executeUpdate(q1);
-            if (x > 0)            
-                System.out.println("Successfully Inserted");            
-            else           
-                System.out.println("Insert Failed");
-             
-            con.close();
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
+  "metadata": {
+    "language_info": {
+      "codemirror_mode": {
+        "name": "python",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8"
+    },
+    "kernelspec": {
+      "name": "python",
+      "display_name": "Python (Pyodide)",
+      "language": "python"
     }
-}
+  },
+  "nbformat_minor": 4,
+  "nbformat": 4,
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": "# 1 . IMPORTING REQUIRED PACKAGE",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "import pandas as pd\nimport seaborn as sns\nimport numpy as np\nfrom matplotlib import pyplot as plt\n%matplotlib inline",
+      "metadata": {
+        "trusted": true
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 2 . LOADING THE DATASET",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "df = pd.read_csv(\"notebooks/Churn_Modelling.csv\")\ndf",
+      "metadata": {
+        "trusted": true
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 3 . VISUALIZATIONS",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "sns.displot(df.Tenure)",
+      "metadata": {
+        "trusted": true
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 3 . 1 . UNIVARIATE ANALYSIS",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "df.plot.line()",
+      "metadata": {
+        "trusted": true
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 3 . 2 . BI-VARIATE ANALYSIS",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "df.plot.line()",
+      "metadata": {},
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 3 . 3 . MULTI - VARIATE ANALYSIS",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "sns.lmplot(\"Age\",\"NumOfProducts\",df,hue=\"NumOfProducts\", fit_reg=False);",
+      "metadata": {
+        "trusted": true
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 4 . PERFORM DESCRIPTIVE STATISTICS ON THE DATASET.",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "df.describe()",
+      "metadata": {
+        "trusted": true
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": "# 5 . HANDLE THE MISSING VALUES.",
+      "metadata": {
+        "id": "McSxJAwcOdZ1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "data = pd.read_csv(\"Churn_Modelling.csv\")\npd.isnull(data[\"Gender\"])",
+      "metadata": {
+        "trusted": true
+      },
